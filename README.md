@@ -20,3 +20,12 @@ A direct-to-restaurant marketplace connecting organic farms outside Mandalay to 
 - **Frontend & Backend:** Next.js (App Router) / React with Tailwind CSS
 - **Database:** PostgreSQL (via Supabase) / Prisma ORM
 - **Deployment:** Vercel
+### 5. System Architecture Diagram
+
+```mermaid
+graph TD
+    A[Restaurant Buyer] -->|Browse & Order| B[Next.js Marketplace Frontend]
+    C[Farm Admin] -->|Manage Inventory| B
+    B -->|API Requests| D[Next.js Server / API Routes]
+    D -->|CRUD Operations| E[(Database / Supabase)]
+    D -->|Status Updates| F[Delivery Tracker Service]
