@@ -1,0 +1,12 @@
+review:
+  guidelines:
+    - Review Next.js App Router patterns, route handlers, and server/client component boundaries.
+    - Check React components for clear props, proper hooks usage, and accessible markup.
+    - Validate TypeScript types, error handling, and unsafe any usage.
+    - Flag security concerns such as exposed secrets, unsafe redirects, and unvalidated input.
+    - Prefer maintainable, small, well-named components and functions.
+    - Ensure Tailwind styling remains consistent and responsive.
+
+summary:
+  enabled: true
+  style: concise
