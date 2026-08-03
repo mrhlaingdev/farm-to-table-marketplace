@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { prisma } from '../../../lib/prisma';
 import { OrderStatus } from '@prisma/client';
 import Link from 'next/link';
@@ -29,21 +31,69 @@ const statusDescriptions: Record<OrderStatus, string> = {
 export default async function OrderTrackingPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
-  let order = await prisma.order.findUnique({
-    where: { id },
-    include: {
-      buyer: true,
-      items: {
-        include: {
-          product: {
-            include: {
-              farmer: true,
+  let order: {
+    id: string;
+    buyerId: string;
+    status: OrderStatus;
+    totalAmount: number;
+    createdAt: Date;
+    updatedAt: Date;
+    buyer: {
+      id: string;
+      email: string;
+      name: string | null;
+      role: string;
+      createdAt: Date;
+      updatedAt: Date;
+    };
+    items: Array<{
+      id: string;
+      orderId: string;
+      productId: string;
+      quantity: number;
+      price: number;
+      product: {
+        id: string;
+        title: string;
+        description: string | null;
+        price: number;
+        unit: string;
+        stock: number;
+        season: string | null;
+        farmerId: string;
+        createdAt: Date;
+        updatedAt: Date;
+        farmer: {
+          id: string;
+          email: string;
+          name: string | null;
+          role: string;
+          createdAt: Date;
+          updatedAt: Date;
+        };
+      };
+    }>;
+  } | null = null;
+
+  try {
+    order = await prisma.order.findUnique({
+      where: { id },
+      include: {
+        buyer: true,
+        items: {
+          include: {
+            product: {
+              include: {
+                farmer: true,
+              },
             },
           },
         },
       },
-    },
-  });
+    });
+  } catch {
+    order = null;
+  }
 
   if (!order) {
     order = {

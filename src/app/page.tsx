@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { AddToCartBtn } from '../components/AddToCartBtn';
 import { prisma } from '../lib/prisma';
 
@@ -8,10 +10,36 @@ interface PageProps {
 export default async function Home({ searchParams }: PageProps) {
   const { season } = await searchParams;
 
-  const products = await prisma.product.findMany({
-    where: season ? { season } : {},
-    include: { farmer: true },
-  });
+  let products: Array<{
+    id: string;
+    title: string;
+    description: string | null;
+    price: number;
+    unit: string;
+    stock: number;
+    season: string | null;
+    farmer?: { name?: string | null } | null;
+  }> = [];
+
+  try {
+    const fetchedProducts = await prisma.product.findMany({
+      where: season ? { season } : {},
+      include: { farmer: true },
+    });
+
+    products = fetchedProducts.map((product) => ({
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      unit: product.unit,
+      stock: product.stock,
+      season: product.season,
+      farmer: product.farmer,
+    }));
+  } catch {
+    products = [];
+  }
 
   return (
     <main className="min-h-screen p-8 bg-slate-50 text-slate-800">

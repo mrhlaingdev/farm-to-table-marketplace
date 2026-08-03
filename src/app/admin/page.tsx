@@ -1,13 +1,41 @@
+export const dynamic = 'force-dynamic';
+
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createProduct, deleteProduct, updateProduct, updateProductStock } from './actions';
 import { prisma } from '../../lib/prisma';
 
 export default async function AdminPage() {
-  const products = await prisma.product.findMany({
-    orderBy: { createdAt: 'desc' },
-    include: { farmer: true },
-  });
+  let products: Array<{
+    id: string;
+    title: string;
+    description: string | null;
+    price: number;
+    unit: string;
+    stock: number;
+    season: string | null;
+    farmer?: { name?: string | null } | null;
+  }> = [];
+
+  try {
+    const fetchedProducts = await prisma.product.findMany({
+      orderBy: { createdAt: 'desc' },
+      include: { farmer: true },
+    });
+
+    products = fetchedProducts.map((product) => ({
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      unit: product.unit,
+      stock: product.stock,
+      season: product.season,
+      farmer: product.farmer,
+    }));
+  } catch {
+    products = [];
+  }
 
   const handleCreate = async (formData: FormData) => {
     'use server';
