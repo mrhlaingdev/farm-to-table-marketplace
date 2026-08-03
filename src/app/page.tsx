@@ -22,6 +22,20 @@ export default async function Home({ searchParams }: PageProps) {
         <p className="text-slate-600 mb-8">
           Directly connecting fresh local farms with buyers.
         </p>
+        <div className="mb-8 flex flex-wrap gap-3">
+          <a
+            href="/orders/demo"
+            className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
+          >
+            View Tracking Demo
+          </a>
+          <a
+            href="/admin"
+            className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+          >
+            Open Admin Dashboard
+          </a>
+        </div>
 
         {/* Season Filter Buttons */}
         <div className="flex gap-2 mb-8">

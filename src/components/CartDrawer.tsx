@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useCart } from '../context/CartContext';
 
 export function CartDrawer() {
@@ -98,13 +99,22 @@ export function CartDrawer() {
                 <span>${totalPrice.toFixed(2)}</span>
               </div>
 
-              <button
-                type="button"
-                onClick={handleCheckout}
-                className="mt-4 w-full rounded-lg bg-emerald-600 px-4 py-3 font-semibold text-white transition hover:bg-emerald-700"
-              >
-                Checkout Now
-              </button>
+              <div className="mt-4 flex flex-col gap-3">
+                <button
+                  type="button"
+                  onClick={handleCheckout}
+                  className="w-full rounded-lg bg-emerald-600 px-4 py-3 font-semibold text-white transition hover:bg-emerald-700"
+                >
+                  Checkout Now
+                </button>
+                <Link
+                  href="/orders/demo"
+                  onClick={closeCart}
+                  className="w-full rounded-lg border border-slate-300 px-4 py-3 text-center text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                >
+                  View Tracking Demo
+                </Link>
+              </div>
             </div>
           </>
         )}
