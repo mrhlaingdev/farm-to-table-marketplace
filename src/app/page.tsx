@@ -1,3 +1,4 @@
+import { AddToCartBtn } from '../components/AddToCartBtn';
 import { prisma } from '../lib/prisma';
 
 interface PageProps {
@@ -73,6 +74,20 @@ export default async function Home({ searchParams }: PageProps) {
                 <span className="text-xs text-slate-500">
                   Stock: {product.stock}
                 </span>
+              </div>
+              <div className="mt-4">
+                <AddToCartBtn
+                  product={{
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    unit: product.unit,
+                    description: product.description,
+                    season: product.season,
+                    farmer: product.farmer,
+                    stock: product.stock,
+                  }}
+                />
               </div>
             </div>
           ))}
