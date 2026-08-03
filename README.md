@@ -5,8 +5,9 @@ An end-to-end digital marketplace connecting local organic farmers directly with
 ---
 
 ## 🎯 Project Overview & Core Mission
-* **Goal:** Eliminate traditional middlemen to provide fairer prices for farmers and fresher produce for restaurants.
-* **Target Audience:** Local Farmers (Sellers), Restaurant Owners/Chefs (Buyers), and Platform Admins.
+
+- **Goal:** Eliminate traditional middlemen to provide fairer prices for farmers and fresher produce for restaurants.
+- **Target Audience:** Local Farmers (Sellers), Restaurant Owners/Chefs (Buyers), and Platform Admins.
 
 ---
 
@@ -14,27 +15,24 @@ An end-to-end digital marketplace connecting local organic farmers directly with
 
 ```mermaid
 graph TD
-    User[Client / Browser] -->|Next.js App Router| Frontend[Frontend - React/Tailwind]
-    Frontend -->|API Routes| Server[Backend API / Server Actions]
-    Server -->|Prisma ORM| Database[(PostgreSQL Database)]
+    A[User / Client Browser] --> B[Next.js App Router - Frontend]
+    B --> C[API Routes / Server Actions - Backend]
+    C --> D[Prisma ORM]
+    D --> E[(PostgreSQL Database)]
+```
 
-    Frontend Framework: Next.js (App Router), TypeScript, Tailwind CSS
+### Tech Stack
 
-Database & ORM: PostgreSQL, Prisma ORM
+- **Frontend Framework:** Next.js (App Router), TypeScript, Tailwind CSS
+- **Database & ORM:** PostgreSQL, Prisma ORM
+- **Authentication:** NextAuth.js / Clerk
+- **State Management:** React Context / Zustand
 
-Authentication: NextAuth.js / Clerk
+## 🚦 Features Roadmap
 
-State Management: React Context / Zustand
-
-🚦 Features Roadmap
-[x] Project Initialization with Next.js & Tailwind CSS
-
-[ ] Database Schema Setup & Integration
-
-[ ] Product Browsing & Seasonal Filtering
-
-[ ] Shopping Cart & Bulk Order Checkout
-
-[ ] Farm Admin Dashboard for Inventory Management
-
-[ ] Delivery Status Tracking System
+- [x] Project Initialization with Next.js & Tailwind CSS
+- [ ] Database Schema Setup & Integration
+- [ ] Product Browsing & Seasonal Filtering
+- [ ] Shopping Cart & Bulk Order Checkout
+- [ ] Farm Admin Dashboard for Inventory Management
+- [ ] Delivery Status Tracking System
