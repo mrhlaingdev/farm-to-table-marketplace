@@ -38,7 +38,58 @@ export default async function Home({ searchParams }: PageProps) {
       farmer: product.farmer,
     }));
   } catch {
-    products = [];
+    products = [
+      {
+        id: 'demo-tomatoes',
+        title: 'Organic Heirloom Tomatoes',
+        description: 'Juicy tomatoes harvested fresh from the hills.',
+        price: 4.5,
+        unit: 'kg',
+        stock: 120,
+        season: 'Monsoon',
+        farmer: { name: 'Shan Fresh Organics' },
+      },
+      {
+        id: 'demo-lettuce',
+        title: 'Crisp Romaine Lettuce',
+        description: 'Cool, crunchy lettuce grown with care.',
+        price: 3.0,
+        unit: 'kg',
+        stock: 80,
+        season: 'Winter',
+        farmer: { name: 'Green Valley Farm' },
+      },
+      {
+        id: 'demo-strawberries',
+        title: 'Sweet Honey Strawberries',
+        description: 'Bright and juicy strawberries perfect for dessert.',
+        price: 8.0,
+        unit: 'box',
+        stock: 45,
+        season: 'Winter',
+        farmer: { name: 'Hilltop Berry Co.' },
+      },
+      {
+        id: 'demo-onions',
+        title: 'Bulk Red Onions',
+        description: 'Flavorful red onions for everyday cooking.',
+        price: 1.8,
+        unit: 'kg',
+        stock: 200,
+        season: 'Summer',
+        farmer: { name: 'Riverbend Farm' },
+      },
+      {
+        id: 'demo-avocados',
+        title: 'Creamy Avocados',
+        description: 'Rich avocados handpicked for fresh salads and toast.',
+        price: 6.5,
+        unit: 'kg',
+        stock: 60,
+        season: 'Summer',
+        farmer: { name: 'Sunrise Grove' },
+      },
+    ];
   }
 
   return (
